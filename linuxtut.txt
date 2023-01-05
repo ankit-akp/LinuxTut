@@ -1,0 +1,38 @@
+# How to login
+cmd: echo bandit0 > 0;sshpass -p $(cat 0) ssh bandit0@bandit.labs.overthewire.org -p 2220
+explanation: echo passwords > passwordFile;sshpass -p $(cat passwordFile) ssh levelUserName@bandit.labs.overthewire.org -p 2220
+
+# How to exit from bandit.labs
+cmd: exit
+
+# Whenever you get the password of next level do: echo password > level;
+and for login: sshpass -p $(cat level) ssh banditLevel@bandit.labs.overthewire.org -p 2220
+
+
+1. How to cat a file which name starts with -
+
+cmd: cat ./-
+
+2. How to cat a file which name has spaces 
+fileName- "spaces in this filename"
+
+cmd: cat 'spaces in this filename'
+alternate cmd: cat spaces\ in\ this\ filename
+# Here we used escape character
+
+3. How to print content of each file in a directory with new line in the end
+cmd: find . -exec awk 1 {} +
+
+4. How to check file type
+cmd: file fileName
+
+5. Find file which is human readable, 1033 bytes in size and not executable
+cmd: find . -readable -size 1033c -not -executable
+
+# In 1033c, c reperents bytes.
+
+6. The password for the next level is stored somewhere on the server and has all of the following properties:
+owned by user bandit7, owned by group bandit6, 33 bytes in size
+cmd : find / -user bandit7 -group bandit6 -size 33c 2>/dev/null
+# Here 2>/dev/null means redirect all the problematic message to linux dustbin called /dev/null
+
